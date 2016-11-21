@@ -1,0 +1,22 @@
+State
+a,b,c,d
+Input symbol
+0,1
+State transition function
+a,1,b
+a,0,c
+b,0,c
+c,1,d
+d,0,c
+d,1,b
+Output symbol
+i,j,k,l
+Output function
+a,1,i
+a,0,j
+b,0,k
+c,1,l
+d,0,i
+d,1,k
+Initial state
+a
