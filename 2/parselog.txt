@@ -1,0 +1,2 @@
+   yacc.py:3428:Generating LALR tables
+   yacc.py:3439:5 shift/reduce conflicts

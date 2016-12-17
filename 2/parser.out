@@ -1,0 +1,197 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> EPSILON
+Rule 2     expression -> SYMBOL
+Rule 3     expression -> LPAREN expression RPAREN
+Rule 4     expression -> expression UNION expression
+Rule 5     expression -> expression STAR
+Rule 6     expression -> expression CONCAT expression
+
+Terminals, with rules where they appear
+
+CONCAT               : 6
+EPSILON              : 1
+LPAREN               : 3
+RPAREN               : 3
+STAR                 : 5
+SYMBOL               : 2
+UNION                : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 3 4 4 5 6 6 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . EPSILON
+    (2) expression -> . SYMBOL
+    (3) expression -> . LPAREN expression RPAREN
+    (4) expression -> . expression UNION expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression CONCAT expression
+
+    EPSILON         shift and go to state 3
+    SYMBOL          shift and go to state 2
+    LPAREN          shift and go to state 4
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+    (4) expression -> expression . UNION expression
+    (5) expression -> expression . STAR
+    (6) expression -> expression . CONCAT expression
+
+    UNION           shift and go to state 7
+    STAR            shift and go to state 6
+    CONCAT          shift and go to state 5
+
+
+state 2
+
+    (2) expression -> SYMBOL .
+
+    UNION           reduce using rule 2 (expression -> SYMBOL .)
+    STAR            reduce using rule 2 (expression -> SYMBOL .)
+    CONCAT          reduce using rule 2 (expression -> SYMBOL .)
+    $end            reduce using rule 2 (expression -> SYMBOL .)
+    RPAREN          reduce using rule 2 (expression -> SYMBOL .)
+
+
+state 3
+
+    (1) expression -> EPSILON .
+
+    UNION           reduce using rule 1 (expression -> EPSILON .)
+    STAR            reduce using rule 1 (expression -> EPSILON .)
+    CONCAT          reduce using rule 1 (expression -> EPSILON .)
+    $end            reduce using rule 1 (expression -> EPSILON .)
+    RPAREN          reduce using rule 1 (expression -> EPSILON .)
+
+
+state 4
+
+    (3) expression -> LPAREN . expression RPAREN
+    (1) expression -> . EPSILON
+    (2) expression -> . SYMBOL
+    (3) expression -> . LPAREN expression RPAREN
+    (4) expression -> . expression UNION expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression CONCAT expression
+
+    EPSILON         shift and go to state 3
+    SYMBOL          shift and go to state 2
+    LPAREN          shift and go to state 4
+
+    expression                     shift and go to state 8
+
+state 5
+
+    (6) expression -> expression CONCAT . expression
+    (1) expression -> . EPSILON
+    (2) expression -> . SYMBOL
+    (3) expression -> . LPAREN expression RPAREN
+    (4) expression -> . expression UNION expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression CONCAT expression
+
+    EPSILON         shift and go to state 3
+    SYMBOL          shift and go to state 2
+    LPAREN          shift and go to state 4
+
+    expression                     shift and go to state 9
+
+state 6
+
+    (5) expression -> expression STAR .
+
+    UNION           reduce using rule 5 (expression -> expression STAR .)
+    STAR            reduce using rule 5 (expression -> expression STAR .)
+    CONCAT          reduce using rule 5 (expression -> expression STAR .)
+    $end            reduce using rule 5 (expression -> expression STAR .)
+    RPAREN          reduce using rule 5 (expression -> expression STAR .)
+
+
+state 7
+
+    (4) expression -> expression UNION . expression
+    (1) expression -> . EPSILON
+    (2) expression -> . SYMBOL
+    (3) expression -> . LPAREN expression RPAREN
+    (4) expression -> . expression UNION expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression CONCAT expression
+
+    EPSILON         shift and go to state 3
+    SYMBOL          shift and go to state 2
+    LPAREN          shift and go to state 4
+
+    expression                     shift and go to state 10
+
+state 8
+
+    (3) expression -> LPAREN expression . RPAREN
+    (4) expression -> expression . UNION expression
+    (5) expression -> expression . STAR
+    (6) expression -> expression . CONCAT expression
+
+    RPAREN          shift and go to state 11
+    UNION           shift and go to state 7
+    STAR            shift and go to state 6
+    CONCAT          shift and go to state 5
+
+
+state 9
+
+    (6) expression -> expression CONCAT expression .
+    (4) expression -> expression . UNION expression
+    (5) expression -> expression . STAR
+    (6) expression -> expression . CONCAT expression
+
+    UNION           reduce using rule 6 (expression -> expression CONCAT expression .)
+    CONCAT          reduce using rule 6 (expression -> expression CONCAT expression .)
+    $end            reduce using rule 6 (expression -> expression CONCAT expression .)
+    RPAREN          reduce using rule 6 (expression -> expression CONCAT expression .)
+    STAR            shift and go to state 6
+
+  ! STAR            [ reduce using rule 6 (expression -> expression CONCAT expression .) ]
+  ! UNION           [ shift and go to state 7 ]
+  ! CONCAT          [ shift and go to state 5 ]
+
+
+state 10
+
+    (4) expression -> expression UNION expression .
+    (4) expression -> expression . UNION expression
+    (5) expression -> expression . STAR
+    (6) expression -> expression . CONCAT expression
+
+    UNION           reduce using rule 4 (expression -> expression UNION expression .)
+    $end            reduce using rule 4 (expression -> expression UNION expression .)
+    RPAREN          reduce using rule 4 (expression -> expression UNION expression .)
+    STAR            shift and go to state 6
+    CONCAT          shift and go to state 5
+
+  ! STAR            [ reduce using rule 4 (expression -> expression UNION expression .) ]
+  ! CONCAT          [ reduce using rule 4 (expression -> expression UNION expression .) ]
+  ! UNION           [ shift and go to state 7 ]
+
+
+state 11
+
+    (3) expression -> LPAREN expression RPAREN .
+
+    UNION           reduce using rule 3 (expression -> LPAREN expression RPAREN .)
+    STAR            reduce using rule 3 (expression -> LPAREN expression RPAREN .)
+    CONCAT          reduce using rule 3 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 3 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 3 (expression -> LPAREN expression RPAREN .)
+
